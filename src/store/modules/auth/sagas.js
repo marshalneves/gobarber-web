@@ -19,8 +19,9 @@ export function* signIn({ payload }) {
       return;
     }
 
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+
     yield put(signInSuccess(token, user));
-    toast.success('Account has been created with success.');
     history.push('/dashboard');
   } catch (error) {
     toast.error('Auth Fails!');
@@ -39,16 +40,27 @@ export function* signUp({ payload }) {
       provider: true,
     });
 
+    toast.success('Account has been created with success.');
     history.push('/');
   } catch (error) {
-    console.tron.log(error);
     toast.error('Fails on save data!');
 
     yield put(signFailure());
   }
 }
 
+export function setToken({ payload }) {
+  if (!payload) return;
+
+  const { token } = payload.auth;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  }
+}
+
 export default all([
+  takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
   takeLatest('@auth/SIGN_UP_REQUEST', signUp),
 ]);
