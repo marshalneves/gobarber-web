@@ -6,7 +6,7 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const Badge = styled.div`
+export const Badge = styled.button`
   background: none;
   border: 0;
   position: relative;
@@ -40,6 +40,7 @@ export const NotificationList = styled.div`
   background: rgba(0, 0, 0, 0.6);
   border-radius: 4px;
   padding: 15px 5px;
+  display: ${props => (props.visible ? 'block' : 'none')};
 
   &::before {
     content: '';
