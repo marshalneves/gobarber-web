@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Form, Input } from '@rocketseat/unform';
 import * as UserActions from '~/store/modules/user/actions';
-
+import AvatarInput from './AvatarInput';
 import * as S from './styles';
 
 export default function Profile() {
@@ -17,6 +17,7 @@ export default function Profile() {
   return (
     <S.Container>
       <Form initialData={profile} onSubmit={handleSubmit}>
+        <AvatarInput name="avatar_id" />
         <Input name="name" placeholder="Full Name" />
         <Input name="email" placeholder="Email address" />
         <hr />
