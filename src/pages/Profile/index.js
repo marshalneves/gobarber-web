@@ -1,7 +1,37 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-// import { Container } from './styles';
+import { Form, Input } from '@rocketseat/unform';
+import * as UserActions from '~/store/modules/user/actions';
+
+import * as S from './styles';
 
 export default function Profile() {
-  return <div />;
+  const dispatch = useDispatch();
+  const profile = useSelector(state => state.user.profile);
+
+  function handleSubmit(data) {
+    dispatch(UserActions.updateProfileRequest(data));
+  }
+
+  return (
+    <S.Container>
+      <Form initialData={profile} onSubmit={handleSubmit}>
+        <Input name="name" placeholder="Full Name" />
+        <Input name="email" placeholder="Email address" />
+        <hr />
+        <Input type="password" name="oldPassword" placeholder="Password" />
+        <Input type="password" name="password" placeholder="New password" />
+        <Input
+          type="password"
+          name="confirmNewPassword"
+          placeholder="Confirm password"
+        />
+
+        <button type="submit">Update profile</button>
+      </Form>
+
+      <button type="button">Exit GoBarber</button>
+    </S.Container>
+  );
 }

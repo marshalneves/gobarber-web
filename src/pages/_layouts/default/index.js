@@ -6,7 +6,8 @@ import * as S from './styles';
 export default function DefaultLayout({ children }) {
   return (
     <S.Wrapper>
-      <Header>{children}</Header>
+      <Header />
+      {children}
     </S.Wrapper>
   );
 }

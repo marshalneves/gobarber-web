@@ -7,7 +7,7 @@ import DefaultLayout from '~/pages/_layouts/default';
 
 import { store } from '~/store';
 
-export default function RouterWrapper({
+export default function RouteWrapper({
   component: Component,
   isPrivate = false,
   ...rest
@@ -36,12 +36,12 @@ export default function RouterWrapper({
   );
 }
 
-RouterWrapper.propTypes = {
+RouteWrapper.propTypes = {
   isPrivate: PropTypes.bool,
   component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     .isRequired,
 };
 
-RouterWrapper.defaultProps = {
+RouteWrapper.defaultProps = {
   isPrivate: false,
 };
