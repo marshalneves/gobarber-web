@@ -20,7 +20,7 @@ export default function Header() {
           <S.Profile>
             <div>
               <strong>{profile.name}</strong>
-              <Link to="/profile">Meu Perfil</Link>
+              <Link to="/profile">My Profile</Link>
             </div>
             <img
               src={
